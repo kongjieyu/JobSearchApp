@@ -19,12 +19,21 @@ const store = createStore(counter)
 //初始状态
 const init = store.getState()
 console.log(init)
+
+//下面其实我们重复了很多次写getState， 既然重复了很多次，我们就可以用函数去处理它
+function listener(){
+    const current = store.getState()
+    console.log(`现在有几把${current}机关枪`)
+}
+store.subscribe(listener)
+
 store.dispatch({type: '加机关枪'})
-const secondState = store.getState()
-console.log(secondState)
+// const secondState = store.getState()
+// console.log(secondState)
 store.dispatch({type: '加机关枪'})
-const thirdState = store.getState()
-console.log(thirdState)
+// const thirdState = store.getState()
+// console.log(thirdState)
 store.dispatch({type: '加机关枪'})
-const forthState = store.getState()
-console.log(forthState)
+// const forthState = store.getState()
+// console.log(forthState)
+
