@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import { addGun } from './index.redux'
-import { removeGun } from './index.redux'
+//之间引入function会导致强解藕问题
+//import { addGun } from './index.redux'
+//import { removeGun } from './index.redux'
 class App extends React.Component{
     // constructor(props){
     //     super(props)
@@ -8,10 +9,13 @@ class App extends React.Component{
     render(){
         const store = this.props.store
         const num = store.getState()
+        const addGun = this.props.addGun
+        const removeGun = this.props.removeGun
         return (
             <div>
                 <h1>现在有机枪{num}把</h1>
                 <button onClick = {()=>store.dispatch(addGun())}>申请武器</button>
+                <button onClick = {()=>store.dispatch(removeGun())}>上交武器</button>
             </div>
         )
     }
