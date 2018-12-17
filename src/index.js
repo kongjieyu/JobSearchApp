@@ -1,17 +1,19 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import App from './App'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 //import reducer
-import { counter, addGun, removeGun } from './index.redux'
+import { counter, addGun, removeGun, addGunAsync } from './index.redux'
 
 //这一步就将reduce放进了store里面了
-const store = createStore(counter)
+//applyMiddleware加在reducer后面,把thunk作为参数传人
+const store = createStore(counter, applyMiddleware(thunk))
 
 function render() {
     //App既react文件
     //渲染App里面需要传很多参数
-    ReactDom.render(<App store={store} addGun = {addGun} removeGun = {removeGun}/>, document.getElementById('root'))
+    ReactDom.render(<App store={store} addGun = {addGun} removeGun = {removeGun} addGunAsync = {addGunAsync}/>, document.getElementById('root'))
 }
 render()
 

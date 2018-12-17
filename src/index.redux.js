@@ -25,3 +25,11 @@ export function addGun(){
 export function removeGun(){
     return {type: REMOVE_GUN}
 }
+
+export function addGunAsync(){
+    return dispatch => {
+        setTimeout(()=>{
+            dispatch(addGun())
+        }, 2000)
+    }
+}
