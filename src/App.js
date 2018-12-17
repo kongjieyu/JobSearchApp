@@ -26,8 +26,14 @@ class App extends React.Component{
     }
 }
 
+//mapStatetoProps: take a piece of state, which is a part of the store, and send it into the component as 'Props'
+//So inside the component, we can just say this.props.XXX
+//Such as const num = this.props.num instead of const num = store.getState()
 const mapStatetoProps = (state)=>{
-    return {num: state}
+    return {
+        //create a property called num
+        num: state
+    }
 }
 
 const actionCreators = { addGun, removeGun, addGunAsync} 

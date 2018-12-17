@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 //import reducer
 import { counter } from './index.redux'
 import { Provider } from 'react-redux'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 const reduxDevtools = window.devToolsExtension?window.devToolsExtension():f=>f
 
@@ -16,13 +17,36 @@ const store = createStore(counter, compose(
     reduxDevtools
 ))
 
+function Erying(){
+    return <h2>Erying222</h2>
+}
 
+function Qibinglian(){
+    return <h2>Qibinglian333</h2>
+}
 
     //App既react文件
     //渲染App里面需要传很多参数
 ReactDom.render(
     (<Provider store={store}>
-        <App />
+        <BrowserRouter>
+        <div>
+            <ul>
+                <li>
+                    <Link to='/'>一营</Link>
+                </li>
+                <li>
+                    <Link to='/erying'>二营</Link>
+                </li>
+                <li>
+                    <Link to='/qibinglian'>骑兵连</Link>
+                </li>
+            </ul>
+            <Route path='/' component = {App} exact></Route>
+            <Route path='/erying' component = {Erying} exact></Route>
+            <Route path='/qibinglian' component = {Qibinglian} exact></Route>
+        </div>
+        </BrowserRouter> 
     </Provider>),
     document.getElementById('root')
 )
