@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import { BrowserRouter, Link, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 import App from './App'
-
+import {logout} from './Auth.redux.js'
 function Erying(){
     return <h2>Erying222</h2>
 }
