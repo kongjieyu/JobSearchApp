@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "antd-mobile": "^2.2.6",
+    "axios": "^0.18.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
     "mongoose": "^5.3.16",
     "nodemon": "^1.18.8",
