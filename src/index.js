@@ -3,8 +3,9 @@ import ReactDom from 'react-dom'
 import App from './App'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
+import { Provider } from 'react-redux'
 //import reducer
-import { counter, addGun, removeGun, addGunAsync } from './index.redux'
+import { counter } from './index.redux'
 
 const reduxDevtools = window.devToolsExtension?window.devToolsExtension():f=>f
 
@@ -17,12 +18,11 @@ const store = createStore(counter, compose(
 
 
 
-function render() {
     //App既react文件
     //渲染App里面需要传很多参数
-    ReactDom.render(<App store={store} addGun = {addGun} removeGun = {removeGun} addGunAsync = {addGunAsync}/>, document.getElementById('root'))
-}
-render()
-
-//每次状态改变就执行render
-store.subscribe(render)
+ReactDom.render(
+    (<Provider store={store}> 
+         <App />
+    </Provider>),
+    document.getElementById('root')
+)
