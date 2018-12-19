@@ -11,7 +11,7 @@ import { addGun, removeGun, addGunAsync} from './index.redux'
 
 //把state塞到了num里面，就不需要用过store去获取了
 const mapStatetoProps = (state) =>{
-    return {num: state}
+    return {num: state.counter}
 }
 //react-redux 会自动把这些参数放到props里面
 const actionCreators = { addGun, removeGun, addGunAsync }

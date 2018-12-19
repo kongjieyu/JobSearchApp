@@ -6,7 +6,9 @@ const REMOVE_GUN = '减机关枪'
 
 //2. 这是reducer
 //每个aciton时有type的
-export function counter(state = 0, action) {
+export function counter(state = 10, action) {
+    //尝试去打印每个reducer的state
+    console.log(state)
     switch(action.type){
         case '加机关枪':
             return state + 1
