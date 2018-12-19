@@ -19,6 +19,7 @@ const store = createStore(reducers, compose(
     reduxDevtools
 ))
 
+//在将reducer合并后，再次打印getState()，可以打印出两个state的状态
 console.log(store.getState())
 
 class Test extends React.Component{

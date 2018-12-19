@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { login } from './Auth.redux'
 
 //两个reducer,每个reducer都有state
-
+//合并reducer
 @connect(
     state => state
 )

@@ -2,6 +2,7 @@ const LOGIN = 'LOGIN'
 const LOGOUT = 'LOGOUT'
 
 export function auth(state={isAuth:false, user:'李云龙'}, action) {
+    //尝试去打印每个reducer的state
     console.log(state)
     switch(action.type){
         case LOGIN:
