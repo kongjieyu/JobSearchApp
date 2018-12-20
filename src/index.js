@@ -43,16 +43,17 @@ class Test extends React.Component{
 //渲染App里面需要传很多参数
 ReactDom.render(
     (<Provider store={store}>
+        {/* 用BrowserRouter包裹整个app */}
         <BrowserRouter>
             {/* Swith只渲染命中的第一个Route  */}
             <Switch>
                 <Route path='/login' component = {Auth} exact></Route>
                 <Route path='/dashboard' component = {Dashboard}></Route>
+                {/* 如果上面的Route都没有命中，就会直接跳转到dashboard */}
                 <Redirect to='/dashboard'></Redirect>
                 {/* <Route path='/qibinglian' component = {Qibinglian}></Route> 
                 <Route path='/:location' component = {Test}></Route>  */}
             </Switch>
-
         </BrowserRouter> 
     </Provider>),
     document.getElementById('root')
