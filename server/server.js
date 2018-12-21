@@ -14,7 +14,7 @@ const app = express();
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-    name: {
+    user: {
         type: String,
         required: true
     },
@@ -26,9 +26,8 @@ const UserSchema = new Schema({
 })
 
 const User = mongoose.model('users',UserSchema);
-
 // User.create({
-//     name:"May",
+//     user:"May",
 //     age: 18
 // }, function(err,doc) {
 //     if(!err){
