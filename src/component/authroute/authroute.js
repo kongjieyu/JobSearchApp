@@ -2,13 +2,20 @@ import React from 'react'
 import axios from 'axios'
 //要把AuthRoute变成路由组件
 import { withRouter } from 'react-router-dom'
+import { loadData } from '../../redux/user.redux'
+import { connect } from 'react-redux'
 @withRouter
+@connect(
+    null,
+    {loadData}
+)
 class AuthRoute extends React.Component{
     //每个组件都有自己的生命周期，关于componentDidMount中的code，在进入这个组件的时候就会先执行 componentDidMount 里面的代码
     componentDidMount(){
         //设例外区（即不登录也可以看到的区域）
         const publicList = ['/login', 'register']
         const pathname = this.props.location.pathname
+        //大于-1就是等于，包含的意思，要么是'/login', 要么是'register'
         if(publicList.indexOf(pathname)>-1) {
             return null
         }
@@ -20,6 +27,7 @@ class AuthRoute extends React.Component{
                 if(res.status === 200) {
                     if(res.data.code === 0) {
                         // 有登陆信息
+                        this.props.loadData(res.data.data)
                     } else {
                         this.props.history.push('/login')
                         console.log(this.props.history)
