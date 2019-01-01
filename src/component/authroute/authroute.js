@@ -15,6 +15,7 @@ class AuthRoute extends React.Component{
         //设例外区（即不登录也可以看到的区域）
         const publicList = ['/login', 'register']
         const pathname = this.props.location.pathname
+        //大于-1就是等于，包含的意思，要么是'/login', 要么是'register'
         if(publicList.indexOf(pathname)>-1) {
             return null
         }

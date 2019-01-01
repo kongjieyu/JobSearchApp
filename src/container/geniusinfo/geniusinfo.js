@@ -10,13 +10,11 @@ import { update } from '../../redux/user.redux'
     {update}
 )
 
-class BossInfo extends React.Component {
+class GeniusInfo extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             title: '',
-            company: '',
-            money: '',
             desc: ''
         }
     }
@@ -31,7 +29,7 @@ class BossInfo extends React.Component {
         return (
             <div>
                 {redirct&&redirct!==path?<Redirect to={this.props.redirectTo}></Redirect>:null}
-                <NavBar mode="dark">BOSS 完善信息页面</NavBar>
+                <NavBar mode="dark">牛人 完善信息页面</NavBar>
                 {/* 因为在boss页面和牛人页面都需要用到选择头像，所以将选择头像这部分写成组件 */}
                 <AvatarSelector
                     selectAvatar = {(imgname)=>{
@@ -44,18 +42,10 @@ class BossInfo extends React.Component {
                     onChange={(v) => { this.onChange('title', v)}}
                     //可以通过console.log来进行打印看效果，下面这行是用来测试的
                     onChange={(v) => { console.log('onChange', v); }}
-                    >招聘职位
-                </InputItem>
-                <InputItem
-                    onChange={(v) => { this.onChange('company', v)}}
-                    >公司名称
-                </InputItem>
-                <InputItem
-                    onChange={(v) => { this.onChange('money', v)}}
-                    >职位薪资
+                    >求职岗位
                 </InputItem>
                 <TextareaItem
-                    title="职位要求"
+                    title="个人简介"
                     row = {3}
                     autoHeight
                     onChange={(v) => { this.onChange('desc', v)}}
@@ -73,4 +63,4 @@ class BossInfo extends React.Component {
     }
 }
 
-export default BossInfo
+export default GeniusInfo

@@ -1,16 +1,20 @@
 const express = require('express');
 const Router = express.Router();
-//加密
+//加密:md5Pwd
 const utils = require('utility')
 const model = require('./model')
 const User = model.getModel('user')
 const _filter = {'pwd':0, '_v':0}
 
 Router.get('/list', function(req,res){
+    //get参数用query获取，post 的参数用body获取
+    const { type } = req.query
+
     //清除测试数据
     //User.remove({}, function(e, d){})
-    User.find({}, function(err, doc){
-        return res.json(doc)
+    User.find({type}, function(err, doc){
+        //先返回一个code，再返回内容
+        return res.json({code:0, data: doc})
     })
 })
 //在这里需要引入body-parser来接收post参数
@@ -50,6 +54,22 @@ Router.post('/register', function(req, res){
                 return res.json({code:0, data: {user, type, _id}})
             }
         })
+    })
+})
+
+Router.post('/update', function(req, res){
+    const userid = req.cookies.userid
+    if (!userid){
+        return res.json({code:1})
+    }
+    //post 的参数用body获取
+    const body = req.body
+    User.findByIdAndUpdate(userid, body, function(err, doc){
+        const data = Object.assign({}, {
+            user: doc.user,
+            type: doc.type
+        }, body)
+        return res.json({code: 0, data})
     })
 })
 
