@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 
 class NavLinkBar extends React.Component{
     //控制数据格式
-   static PropTypes = {
+   static propTypes = {
         selectAvatar: PropTypes.array.isRequired
     }
     render(){

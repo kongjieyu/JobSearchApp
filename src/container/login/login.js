@@ -4,21 +4,21 @@ import { List, InputItem, WingBlank, WhiteSpace, Button } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { login } from '../../redux/user.redux'
+import imoocForm from '../../component/imooc-form/imooc-form'
 
 @connect(
     //要的state属性，和方法都通过connect放到props里
     state=>state.user,
     {login}
 )
-
-
+@imoocForm
 class Login extends React.Component{
    constructor(props) {
         super(props);
-        this.state = {
-            user: '',
-            pwd: ''
-        }
+        // this.state = {
+        //     user: '',
+        //     pwd: ''
+        // }
         this.register = this.register.bind(this)
         this.handleLogin = this.handleLogin.bind(this)
     }
@@ -29,20 +29,20 @@ class Login extends React.Component{
         this.props.history.push('/register')
     }
 
-    handleChange(key,val){
-        this.setState({
-            [key]:val
-        })
-    }
+    // handleChange(key,val){
+    //     this.setState({
+    //         [key]:val
+    //     })
+    // }
     handleLogin(){
-        this.props.login(this.state)
-        console.log(this.state)
+        this.props.login(this.props.state)
+        console.log(this.props.state)
     }
 
     render(){
         return(
             <div>
-                {this.props.redirectTo? <Redirect to={this.props.redirectTo} />:null}
+                {(this.props.redirectTo&&this.props.redireactTo!=='/login')? <Redirect to={this.props.redirectTo} />:null}
                 <Logo></Logo>
                 <h2>我是登陆页面</h2>
                 <WingBlank>
@@ -51,11 +51,11 @@ class Login extends React.Component{
                         {this.props.msg?<p className='error-msg'>{this.props.msg}</p>:null}
                         {/*InputItem是蚂蚁UI封装过的表单，原装React表单还是 <label>和<input>  */}
                         <InputItem
-                            onChange={(v) => { this.handleChange('user', v)}}
+                            onChange={(v) => { this.props.handleChange('user', v)}}
                         >用户</InputItem>
                         <InputItem
                             type='password'
-                            onChange={(v) => { this.handleChange('pwd', v)}}
+                            onChange={(v) => { this.props.handleChange('pwd', v)}}
                         >密码</InputItem>
                     </List>
                     <WhiteSpace />

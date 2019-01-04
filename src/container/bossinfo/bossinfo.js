@@ -43,7 +43,6 @@ class BossInfo extends React.Component {
                 <InputItem
                     onChange={(v) => { this.onChange('title', v)}}
                     //可以通过console.log来进行打印看效果，下面这行是用来测试的
-                    onChange={(v) => { console.log('onChange', v); }}
                     >招聘职位
                 </InputItem>
                 <InputItem

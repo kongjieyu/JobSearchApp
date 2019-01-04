@@ -17,11 +17,16 @@ class GeniusInfo extends React.Component {
             title: '',
             desc: ''
         }
+        this.logout = this.logout.bind(this)
+    }
+    logout(){
+        console.log('logoutttt')
     }
     onChange(key,val){
         this.setState({
             [key]:val
         })
+        console.log('onChange')
     }
     render(){
         const path = this.props.location.pathname
@@ -41,7 +46,6 @@ class GeniusInfo extends React.Component {
                 <InputItem
                     onChange={(v) => { this.onChange('title', v)}}
                     //可以通过console.log来进行打印看效果，下面这行是用来测试的
-                    onChange={(v) => { console.log('onChange', v); }}
                     >求职岗位
                 </InputItem>
                 <TextareaItem
@@ -57,6 +61,9 @@ class GeniusInfo extends React.Component {
                         this.props.update(this.state)
                     }}
                     type='primary'>保存</Button>
+                <Button onClick={this.logout} type='primary'>
+                退出登陆
+                </Button>
             </div>
 
         )
