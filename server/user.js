@@ -4,10 +4,17 @@ const Router = express.Router();
 const utils = require('utility')
 const model = require('./model')
 const User = model.getModel('user')
+const Chat = model.getModel('chat')
 const _filter = {'pwd':0, '_v':0}
+//清空聊天信息
+Chat.remove({},function(e,d){
+    console.log('Clear all the chatting msg')
+})
 
 Router.get('/list', function(req,res){
     //get参数用query获取，post 的参数用body获取
+    console.log('get the url')
+    console.log(req.url)
     const { type } = req.query
 
     //清除测试数据
@@ -17,6 +24,34 @@ Router.get('/list', function(req,res){
         return res.json({code:0, data: doc})
     })
 })
+
+Router.get('/getmsglist', function(req,res){
+    const user = req.cookies.userid
+    // const user = req.cookies.user
+    //查询所有的user
+    User.find({},function(e, userdoc){
+        //把返回的列表转化为一个对象
+        let users = {}
+        //遍历，然后把需要的数据拿出来
+        // console.log('userdoc')
+        // console.log(userdoc)
+        userdoc.forEach(v=>{
+            //key-value组合
+            users[v._id] = {name: v.user, avatar: v.avatar}
+        })
+        //要查询多个条件用$or
+        // {'$or': [{from: user, to:user}]}
+        // {}只有一个括号就是把所有的信息都查出来
+        Chat.find({'$or':[{from:user},{to:user}]},function(err,doc){
+            if(!err){
+                return res.json({code:0, msgs:doc, users:users})
+            }
+        })
+    })
+
+
+})
+
 //在这里需要引入body-parser来接收post参数
 
 Router.post('/login', function(req, res){

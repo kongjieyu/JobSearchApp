@@ -13,6 +13,7 @@ import AuthRoute from './component/authroute/authroute'
 import BossInfo from './container/bossinfo/bossinfo'
 import GeniusInfo from './container/geniusinfo/geniusinfo'
 import Dashboard from './component/dashboard/dashboard'
+import Chat from './component/chat/chat'
 //import reducer
 import reducers from './reducer'
 //import axios from 'axios'
@@ -57,6 +58,8 @@ ReactDom.render(
                     {/* <Route path='/boss' component={Boss}></Route> */}
                     <Route path='/login' component={Login}></Route>
                     <Route path='/register' component={Register}></Route>
+                    {/* 聊天的目标为:user  */}
+                    <Route path='/chat/:user' component={Chat}></Route>
                     {/* 在没有任何路由命中的情况下，所有的路径都会命中这个Dashboard；但是在有path的情况下，就是没有命中其他的Route的时候就用这个  */}
                     <Route component={Dashboard}></Route>
                 </Switch>

@@ -8,6 +8,7 @@ import UserCard from '../usercard/usercard'
 @connect(
     //获取chatuser的state
     state=>state.chatuser,
+    //在connect中放入getUserList这个方法后，就可以通过props获取了
     {getUserList}
 )
 
@@ -15,6 +16,7 @@ class Boss extends React.Component{
 
     constructor(props){
         super(props);
+        //初始化state
         this.state = {
             data:[]
         }
