@@ -1,3 +1,4 @@
+//登陆成功之后，所有的页面都归dashboard.js管理
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavBar } from 'antd-mobile';
@@ -6,6 +7,7 @@ import NavLinkBar from '../navlink/navlink';
 import Boss from '../../component/boss/boss'
 import Genius from '../../component/genius/genius'
 import User from '../../container/user/user'
+import { getUMsgList, recvMsg } from '../../redux/chat.redux'
 
 // function Boss(){
 //     return <h2>Boss首页</h2>
@@ -21,11 +23,17 @@ function Msg(){
 // }
 
 @connect(
-    state=>state
+    state=>state,
+    { getUMsgList, recvMsg }
 )
 
 class Dashboard extends React.Component{
-
+    componentDidMount(){
+        if(!this.props.chat.chatmsg.length){
+            this.props.getUMsgList()
+            this.props.recvMsg()
+        }
+    }
     render(){
         //Dashboard 本身就是个router组件
         console.log(this.props)
@@ -33,6 +41,7 @@ class Dashboard extends React.Component{
         //redux里面的数据
         
         const user = this.props.user
+        //每个数据都是一个对象
         const navList = [
             {
                 path: '/boss',
@@ -77,6 +86,7 @@ class Dashboard extends React.Component{
                         ))}
                     </Switch>
                 </div>
+                {/* 把navList传给子组件  */}
                  <NavLinkBar data={navList}></NavLinkBar> 
             </div>
         ) 

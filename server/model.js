@@ -22,8 +22,18 @@ const models = {
         company: {type: String},
         money: {type: String}
     },
-    chat: { 
+    
+    //建立聊天的模型
+    chat: {
+        //聊天者两个人的id，每个聊天唯一的标识
+        chatid: {type: String, require: true},
+        from: {type: String, require: true},
+        to: {type: String, require: true},
+        read: {type: Boolean, default: false},
+        content: {type: String, require: true, default:''},
+        create_time: {type: Number, default:new Date().getTime()}
     }
+
 }
 
 for(let m in models){
