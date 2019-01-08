@@ -7,6 +7,7 @@ import NavLinkBar from '../navlink/navlink';
 import Boss from '../../component/boss/boss'
 import Genius from '../../component/genius/genius'
 import User from '../../container/user/user'
+import Msg from '../msg/msg'
 import { getUMsgList, recvMsg } from '../../redux/chat.redux'
 
 // function Boss(){
@@ -15,9 +16,9 @@ import { getUMsgList, recvMsg } from '../../redux/chat.redux'
 // function Genius(){
 //     return <h2>牛人首页</h2>
 // }
-function Msg(){
-    return <h2>消息首页</h2>
-}
+// function Msg(){
+//     return <h2>消息首页</h2>
+// }
 // function User(){
 //     return <h2>个人中心</h2>
 // }
