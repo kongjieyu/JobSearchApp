@@ -2,7 +2,7 @@ import React from 'react'
 import { List, InputItem, NavBar, Icon, Grid } from 'antd-mobile'
 import io from 'socket.io-client';
 import { connect } from 'react-redux'
-import { getUMsgList, sendMsg, recvMsg } from '../../redux/chat.redux'
+import { getUMsgList, sendMsg, recvMsg, readMsg } from '../../redux/chat.redux'
 import { getChatId } from '../../util'
 //因为现在处于跨域的状态，需要把localhost:9093传入；但是如果后来不需要跨域，就不用传任何东西
 const socket = io('ws://localhost:9093')
@@ -10,7 +10,7 @@ const socket = io('ws://localhost:9093')
 @connect(
     //要的state属性，直接获取所有的状态
     state=>state,
-    { getUMsgList, sendMsg, recvMsg }
+    { getUMsgList, sendMsg, recvMsg, readMsg }
 )
 
 class Chat extends React.Component{
@@ -27,6 +27,8 @@ class Chat extends React.Component{
             this.props.getUMsgList()
             this.props.recvMsg()
         }
+        const to = this.props.match.params.user
+        this.props.readMsg(to)
 
 
         // socket.on('recvmsg', (data)=>{

@@ -91,6 +91,25 @@ Router.post('/register', function(req, res){
         })
     })
 })
+Router.post('/readmsg', function (req,res){
+    const userid = req.cookies.userid
+    const {from} = req.body
+    console.log('打印userid,from')
+    console.log(userid,from)
+    Chat.update(
+        {from, to:userid}, 
+        {'$set': {read:true}}, 
+        {'multi': true},
+        function (err, doc) {
+        console.log(doc)
+        if(!err){
+            return res.json({code:0, num: doc.nModified})
+        }
+        console.log('我要打印错误啦')
+        console.log(err)
+        return res.json({code:1, msg: '修改失败'})
+    })
+})
 
 Router.post('/update', function(req, res){
     const userid = req.cookies.userid
