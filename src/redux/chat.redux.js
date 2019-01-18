@@ -49,6 +49,24 @@ function msgRecv(msg, userid){
     return {userid, type: MSG_RECV, payload: msg}
 }
 
+function msgRead({from, userid, num}){
+    return {type: MSG_READ, payload: {from, userid, num}}
+}
+
+export function readMsg(from){
+    //getState是因为要从redux内部获取当前登陆的信息
+    return (dispatch, getState)=>{
+        axios.post('/user/readmsg', {from})
+            .then(res=>{
+                console.log('读到readMsg')
+                const userid = getState().user._id
+                if(res.status===200&&res.data.code===0){
+                    dispatch(msgRead({ userid, from, num: res.data.nums}))
+                }
+            })
+    }
+}
+
 export function recvMsg(){
     return (dispatch, getState) => {
         //监听
