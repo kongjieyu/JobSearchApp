@@ -27,8 +27,7 @@ class Chat extends React.Component{
             this.props.getUMsgList()
             this.props.recvMsg()
         }
-        const to = this.props.match.params.user
-        this.props.readMsg(to)
+
 
 
         // socket.on('recvmsg', (data)=>{
@@ -36,6 +35,12 @@ class Chat extends React.Component{
         //         msg: [...this.state.msg, data.text]
         //     })
         // })
+    }
+    //当前路由只要一离开，就会触发componentWillUnmount， 当前路由就是chat组件
+    componentWillUnmount(){
+        console.log('离开当前组件')
+        const to = this.props.match.params.user
+        this.props.readMsg(to)
     }
     fixCarousel(){
         setTimeout(function(){
@@ -148,6 +153,7 @@ class Chat extends React.Component{
                                 text:this.state.text+el.text
                             })
                             console.log(el)
+                            console.log(this.state)
                         }}
                     />:null}
                     

@@ -50,7 +50,7 @@ app.get('/data', function (req, res) {
       res.json(doc)
   })
 })
-
+//因为用了socket之后，app.listen变成server.listen
 server.listen(9093, function(){
     console.log('Node listen to the port 9093')
 })
