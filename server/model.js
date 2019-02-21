@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost:27017/imooc-chat')
+mongoose.connect('mongodb://localhost:27017/imooc-react')
     .then(() => {
         console.log('MongoDB connected')
     })

@@ -101,10 +101,10 @@ Router.post('/readmsg', function (req,res){
         {'$set': {read:true}}, 
         {'multi': true},
         function (err, doc) {
-        console.log(doc)
-        if(!err){
-            return res.json({code:0, num: doc.nModified})
-        }
+            console.log(doc)
+            if(!err){
+                return res.json({code:0, num: doc.nModified})
+            }
         console.log('我要打印错误啦')
         console.log(err)
         return res.json({code:1, msg: '修改失败'})

@@ -32,7 +32,11 @@ export function chat(state=initState, action){
             const n = action.payload.to == action .userid?1:0
             //在msg的数组上append一条当前的msg
             return {...state, chatmsg:[...state.chatmsg, action.payload], unread: state.unread+n}
-        // case MSG_READ:
+        case MSG_READ:
+            const {from, num} = action.payload
+            return {...state, chatmsg:state.chatmsg.map(v=>({...v,
+                read: from==v.from?true:v.read
+            })), unread:state.unread-num}
         default:
             return state
     }
@@ -61,7 +65,7 @@ export function readMsg(from){
                 console.log('读到readMsg')
                 const userid = getState().user._id
                 if(res.status===200&&res.data.code===0){
-                    dispatch(msgRead({ userid, from, num: res.data.nums}))
+                    dispatch(msgRead({ userid, from, num: res.data.num}))
                 }
             })
     }
